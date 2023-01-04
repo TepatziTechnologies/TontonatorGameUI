@@ -1,13 +1,13 @@
 ﻿using System;
 using Google.Cloud.Firestore;
 using Newtonsoft.Json;
-using Tontonator.Core.Data.BaseRepository;
-using Tontonator.Core.Helpers;
-using Tontonator.Models;
-using Tontonator.Models.Enums;
-using static Grpc.Core.Metadata;
+using TontonatorGameUI.Models.Enums;
+using System.Collections.Generic;
+using TontonatorGameUI.Core.Data.BaseRepository;
+using TontonatorGameUI.Core.Helpers;
+using TontonatorGameUI.Models;
 
-namespace Tontonator.Core.Services
+namespace TontonatorGameUI.Core.Services
 {
     public class CharactersService : EntityBaseRepository<Character>
     {
@@ -21,7 +21,7 @@ namespace Tontonator.Core.Services
         public virtual Character AddCharacter(Character entity)
         {
             //
-            DocumentReference document = _firestoreDb.Collection(this.collection).Document();
+            DocumentReference document = _firestoreDb.Collection(collection).Document();
             entity.Id = document.Id;
 
             var questionsCollection = document.Collection("questions");
@@ -61,7 +61,7 @@ namespace Tontonator.Core.Services
 
             if (!Tontonator.Instance.DATABASE_OFF)
             {
-                var parentCollection = _firestoreDb.Collection(this.collection);
+                var parentCollection = _firestoreDb.Collection(collection);
 
                 foreach (var question in questions)
                 {
@@ -81,7 +81,7 @@ namespace Tontonator.Core.Services
 
             if (!Tontonator.Instance.DATABASE_OFF)
             {
-                var parentCollection = _firestoreDb.Collection(this.collection);
+                var parentCollection = _firestoreDb.Collection(collection);
                 var result = parentCollection.WhereArrayContains(nameof(Character.IdQuestions), question.Id).GetSnapshotAsync().GetAwaiter().GetResult();
 
                 foreach (var document in result)
@@ -109,7 +109,7 @@ namespace Tontonator.Core.Services
         {
             List<Question> questions = new List<Question>();
 
-            var parentCollection = _firestoreDb.Collection(this.collection);
+            var parentCollection = _firestoreDb.Collection(collection);
             var documentReference = parentCollection.Document(id);
             var questionsCollection = documentReference.Collection("questions");
             var result = questionsCollection.GetSnapshotAsync().GetAwaiter().GetResult();
@@ -126,7 +126,6 @@ namespace Tontonator.Core.Services
                     else MessageHelper.WriteError("Ha ocurrido un error contacte a un administrador.");
                 }
             }
-
 
             return questions;
         }

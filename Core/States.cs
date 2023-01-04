@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Metrics;
-using Tontonator.Core.Helpers;
-using Tontonator.Models;
-using Tontonator.Models.Enums;
+using TontonatorGameUI.Core.Helpers;
+using TontonatorGameUI.Models;
+using TontonatorGameUI.Models.Enums;
 
-namespace Tontonator.Core
+namespace TontonatorGameUI.Core
 {
     public class States
     {
@@ -142,7 +143,7 @@ namespace Tontonator.Core
                         Tontonator.Instance.Dispose();
                         MessageHelper.WriteSuccess("He adivinado su personaje. Presione cualquier tecla para salir.");
                         Console.ReadKey();
-                        App.Exit();
+                        //App.Exit();
                     }
                     else if (int.Parse(opt) == 2)
                     {
@@ -198,7 +199,7 @@ namespace Tontonator.Core
                                 if (question != null) questions.Add(question);
                             }
 
-                            if(questions.Count > 0)
+                            if (questions.Count > 0)
                             {
                                 Console.WriteLine("Ingrese el nombre para su personaje: ");
                                 characterName = Console.ReadLine();
@@ -213,13 +214,13 @@ namespace Tontonator.Core
                             if (string.IsNullOrEmpty(character.Id)) Console.WriteLine("Su personaje se ha enviado para revisión.");
                         }
                     }
-                    else if (int.Parse(opt) == 2) 
+                    else if (int.Parse(opt) == 2)
                     {
                         Tontonator.Instance.Dispose();
                         Console.Clear();
                         MessageHelper.WriteSuccess("Presiona cualquier tecla para terminar.");
                         Console.ReadKey();
-                        App.Exit();
+                        //App.Exit();
                     }
                 }
             }
@@ -238,8 +239,8 @@ namespace Tontonator.Core
             {
                 //if (questionTxt.StartsWith('¿') && questionTxt.EndsWith('?'))
                 //{
-                    question = new Question(questionTxt, QuestionCategory.Character, Status.Disabled);
-                    ShowQuestion(question);
+                question = new Question(questionTxt, QuestionCategory.Character, Status.Disabled);
+                ShowQuestion(question);
                 /*}
                 else
                 {
@@ -256,6 +257,6 @@ namespace Tontonator.Core
         /// </summary>
         /// <param name="question">The question to be checked.</param>
         /// <returns>Returns either true if the question is not null or false if it is null.</returns>
-        private static bool IsQuestionReady(Question question) => question != null ? true : false;   
+        private static bool IsQuestionReady(Question question) => question != null ? true : false;
     }
 }

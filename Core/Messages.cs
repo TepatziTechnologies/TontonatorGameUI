@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Tontonator.Core
+
+namespace TontonatorGameUI.Core
 {
     public class Messages
     {

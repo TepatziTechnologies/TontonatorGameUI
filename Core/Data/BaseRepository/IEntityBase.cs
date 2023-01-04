@@ -1,5 +1,7 @@
 ﻿using System;
-namespace Tontonator.Core.Data.BaseRepository
+using System.Collections.Generic;
+
+namespace TontonatorGameUI.Core.Data.BaseRepository
 {
     public interface IEntityBase
     {

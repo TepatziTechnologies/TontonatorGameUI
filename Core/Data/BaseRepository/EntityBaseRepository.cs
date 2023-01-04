@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Google.Cloud.Firestore;
 using Newtonsoft.Json;
-using Tontonator.Models;
+using TontonatorGameUI.Models;
 
-namespace Tontonator.Core.Data.BaseRepository
+namespace TontonatorGameUI.Core.Data.BaseRepository
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
@@ -14,15 +16,16 @@ namespace Tontonator.Core.Data.BaseRepository
 
         public EntityBaseRepository(string collectionName)
         {
-            this.collection = collectionName;
+            collection = collectionName;
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
             _firestoreDb = FirestoreDb.Create("tontonatoruaq");
         }
 
         public T Add(T entity)
         {
-            if (!Tontonator.Instance.DATABASE_OFF) { 
-                DocumentReference document = _firestoreDb.Collection(this.collection).Document();
+            if (!Tontonator.Instance.DATABASE_OFF)
+            {
+                DocumentReference document = _firestoreDb.Collection(collection).Document();
                 entity.Id = document.Id;
                 var result = document.SetAsync(entity.ToDictionary()).GetAwaiter().GetResult();
             }
@@ -41,7 +44,7 @@ namespace Tontonator.Core.Data.BaseRepository
             List<T> values = new List<T>();
             T? entity = new T();
 
-            CollectionReference parentCollection = _firestoreDb.Collection(this.collection);
+            CollectionReference parentCollection = _firestoreDb.Collection(collection);
             Query query = parentCollection.WhereEqualTo(field, queryValue);
 
             foreach (var data in query.GetSnapshotAsync().GetAwaiter().GetResult())
@@ -64,7 +67,7 @@ namespace Tontonator.Core.Data.BaseRepository
             List<T> values = new List<T>();
             T? entity = new T();
 
-            CollectionReference parentCollection = _firestoreDb.Collection(this.collection);
+            CollectionReference parentCollection = _firestoreDb.Collection(collection);
             Query query = parentCollection.WhereEqualTo(field, queryValue);
 
             foreach (var data in query.GetSnapshotAsync().GetAwaiter().GetResult())

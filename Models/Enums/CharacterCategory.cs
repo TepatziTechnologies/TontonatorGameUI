@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Tontonator.Models.Enums
+
+namespace TontonatorGameUI.Models.Enums
 {
     public enum CharacterCategory
     {

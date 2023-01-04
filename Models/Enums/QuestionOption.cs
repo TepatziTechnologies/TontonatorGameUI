@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tontonator.Models.Enums
+namespace TontonatorGameUI.Models.Enums
 {
     public enum QuestionOption
     {

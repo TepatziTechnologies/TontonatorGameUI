@@ -1,14 +1,14 @@
 ﻿using System;
-using Tontonator.Core.Data.BaseRepository;
-using Tontonator.Models;
+using TontonatorGameUI.Core.Data.BaseRepository;
+using TontonatorGameUI.Models;
 
-namespace Tontonator.Core.Services
+namespace TontonatorGameUI.Core.Services
 {
     public class QuestionsService : EntityBaseRepository<Question>
     {
         public QuestionsService() : base("questions")
         {
-            
+
         }
     }
 }

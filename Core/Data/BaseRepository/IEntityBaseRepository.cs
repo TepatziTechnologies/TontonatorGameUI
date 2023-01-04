@@ -1,5 +1,7 @@
 ﻿using System;
-namespace Tontonator.Core.Data.BaseRepository
+using System.Threading.Tasks;
+
+namespace TontonatorGameUI.Core.Data.BaseRepository
 {
     public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
