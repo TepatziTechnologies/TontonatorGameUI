@@ -9,6 +9,9 @@
 
   <ItemGroup>
     <None Remove="Assets\Animations\loading.gif" />
+    <None Remove="Assets\Animations\tontonator.gif" />
+    <None Remove="Assets\Fonts\BruceForever-Regular.ttf" />
+    <None Remove="Assets\play-button-arrowhead.png" />
     <None Remove="tontonatoruaq-firebase-adminsdk-oww74-029b8e3492.json" />
   </ItemGroup>
 
@@ -16,6 +19,15 @@
     <Content Include="Assets\Animations\loading.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Animations\tontonator.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\play-button-arrowhead.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Assets\Fonts\BruceForever-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="tontonatoruaq-firebase-adminsdk-oww74-029b8e3492.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>

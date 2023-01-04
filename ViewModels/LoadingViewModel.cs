@@ -9,6 +9,8 @@ using System.Windows.Input;
 using TontonatorGameUI.Actions;
 using TontonatorGameUI.Helpers;
 using TontonatorGameUI.Core;
+using TontonatorGameUI.Views;
+using System.Threading;
 
 namespace TontonatorGameUI.ViewModels
 {
@@ -19,11 +21,21 @@ namespace TontonatorGameUI.ViewModels
         {
             get
             {
-                return _loadAction ?? (_loadAction = new DelegateLoadedAction( () =>
+                return _loadAction ?? (_loadAction = new DelegateLoadedAction( async () =>
                 {
                     if (InternetConnectionHelper.CheckInternetConnection())
                     {
-                        Tontonator.Instance.Init();
+						//Tontonator.Instance.Init();
+
+						await Task.Delay(5000);
+
+						var mainWindow = new Views.MainWindow();
+						
+						Application.Current.Windows[0].Close();
+
+						mainWindow.Show();
+						
+						
                     }
                     else
                     {

@@ -41,7 +41,7 @@ namespace TontonatorGameUI.Core
                                 switch (opt)
                                 {
                                     case 1:
-                                        Tontonator.Instance.Init();
+                                        //Tontonator.Instance.Init();
                                         break;
                                     case 2:
                                         Console.WriteLine("Saliendo...");

@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:TontonatorGameUI.Views"
+        xmlns:vm="clr-namespace:TontonatorGameUI.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="345" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{DynamicResource PrimaryColor}">
 
@@ -11,5 +13,23 @@
         <RectangleGeometry Rect="0,0,345,500" RadiusX="15" RadiusY="15"/>
     </Window.Clip>
 
-    <Grid/>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid x:Name="startGrid" Visibility="{Binding StartVisible}" d:IsLocked="True" d:IsHidden="True">
+            <Button Content="JUGAR" HorizontalAlignment="Center" Style="{StaticResource NoHoverButton}" VerticalAlignment="Center" FontSize="48" Height="64" Width="64" FontFamily="{DynamicResource BruceForeverRegular}" BorderBrush="{x:Null}" Command="{Binding StartCommand}" Foreground="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/play-button-arrowhead.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid x:Name="questionGrid" Visibility="Visible">
+            <TextBlock Text="{Binding QuestionText}" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Width="265"/>
+            <Image HorizontalAlignment="Left" Height="239" Margin="95,0,0,0" VerticalAlignment="Top" Width="166" gif:ImageBehavior.AnimatedSource="/Assets/Animations/tontonator.gif"/>
+            <Button Content="Si" HorizontalAlignment="Center" Margin="0,341,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FF3DC74C" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <Button Content="No" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FFCA3A3A" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+        </Grid>
+    </Grid>
 </Window>

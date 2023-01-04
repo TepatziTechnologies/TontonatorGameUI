@@ -4,6 +4,34 @@
              xmlns:local="clr-namespace:TontonatorGameUI"
              StartupUri="Views/LoadingWindow.xaml">
     <Application.Resources>
+
+        <FontFamily x:Key="BruceForeverRegular">pack://application:,,,/Assets/Fonts/#BruceForeverRegular</FontFamily>
         <SolidColorBrush x:Key="PrimaryColor">#1b2739</SolidColorBrush>
+
+        <Style x:Key="NoHoverButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        BorderThickness="1"
+                        Padding="4,2" 
+                        BorderBrush="{StaticResource PrimaryColor}" 
+                        CornerRadius="3"
+                        Cursor="Hand"
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TontonatorGameUI.Core.Data;
 using TontonatorGameUI.Core.Services;
 using TontonatorGameUI.Models;
+using TontonatorGameUI.ViewModels;
 
 namespace TontonatorGameUI.Core
 {
@@ -130,17 +131,19 @@ namespace TontonatorGameUI.Core
         #region GUIAppVars
 
         public bool IsLoaded { get; set; }
+		private MainWindowViewModel viewModel;
 
         #endregion
 
         /// <summary>
         /// Initialize the game.
         /// </summary>
-        public void Init()
+        public void Init(MainWindowViewModel viewModel)
         {
             // The way we initialize is doing a call to this method.
             // Since here starts to do all the process.
             questions = DataManager.GetBasicQuestions();
+			this.viewModel = viewModel;
             ChangeQuestion();
         }
 
@@ -229,9 +232,9 @@ namespace TontonatorGameUI.Core
             if (IsActive)
             {
                 // If there are any question's character then we show those first.
-                if (charactersInheritedQuestions.Count > 0) States.ShowQuestion(charactersInheritedQuestions[0], currentIndex);
+                if (charactersInheritedQuestions.Count > 0) viewModel.SetQuestion(charactersInheritedQuestions[0], currentIndex);
                 // If there are questions reamining then we ask it.
-                else if (questions.Count > 0) States.ShowQuestion(questions[0], currentIndex);
+                else if (questions.Count > 0) viewModel.SetQuestion(questions[0], currentIndex);
                 // If there's nothing left then that means no character matched. We asked the user for it.
                 else if (questions.Count == 0) States.CreateNewCharacterMenu(QuestionsRequired);
                 //else if (questions.Count == 0) FillQuestions();
