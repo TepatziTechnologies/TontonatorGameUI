@@ -25,11 +25,44 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid x:Name="questionGrid" Visibility="Visible">
+        <Grid x:Name="questionGrid" Visibility="{Binding QuestionVisible}" d:IsLocked="True">
             <TextBlock Text="{Binding QuestionText}" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Width="265"/>
             <Image HorizontalAlignment="Left" Height="239" Margin="95,0,0,0" VerticalAlignment="Top" Width="166" gif:ImageBehavior.AnimatedSource="/Assets/Animations/tontonator.gif"/>
-            <Button Content="Si" HorizontalAlignment="Center" Margin="0,341,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FF3DC74C" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
-            <Button Content="No" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FFCA3A3A" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <Button Style="{StaticResource NoHoverButton}" Command="{Binding PositiveCommand}" CommandParameter="1" Content="Si" HorizontalAlignment="Center" Margin="0,341,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FF3DC74C" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <Button Style="{StaticResource NoHoverButton}" Command="{Binding NegativeCommand}" CommandParameter="1" Content="No" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FFCA3A3A" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
         </Grid>
+        <Grid x:Name="isItCharacter" Visibility="{Binding IsItCharacterVisible}">
+            <TextBlock Text="{Binding CharacterName}" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Width="265"/>
+            <Image HorizontalAlignment="Left" Height="239" Margin="95,0,0,0" VerticalAlignment="Top" Width="166" gif:ImageBehavior.AnimatedSource="/Assets/Animations/tontonator2.gif"/>
+            <Button Style="{StaticResource NoHoverButton}" Command="{Binding PositiveCommand}" CommandParameter="2" Content="Si" HorizontalAlignment="Center" Margin="0,341,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FF3DC74C" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <Button Style="{StaticResource NoHoverButton}" Command="{Binding NegativeCommand}" CommandParameter="2" Content="No" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FFCA3A3A" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+        </Grid>
+        <Grid x:Name="newCharacterMenu" Visibility="{Binding NewCharacterVisible}">
+            <TextBlock Text="No pude adivinar su personaje. ¿Desea agregar un nuevo personaje?" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14" Width="265"/>
+            <Image HorizontalAlignment="Left" Height="239" Margin="95,0,0,0" VerticalAlignment="Top" Width="166" gif:ImageBehavior.AnimatedSource="/Assets/Animations/tontonator2.gif"/>
+            <Button Style="{StaticResource NoHoverButton}" Command="{Binding PositiveCommand}" CommandParameter="3" Content="Si" HorizontalAlignment="Center" Margin="0,341,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FF3DC74C" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <Button Style="{StaticResource NoHoverButton}" Command="{Binding NegativeCommand}" CommandParameter="3" Content="No" HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" Width="200" Height="30" Background="#FFCA3A3A" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+        </Grid>
+        <Grid x:Name="questionForm" Visibility="{Binding QuestionFormVisible}" >
+            <Label Content="Nombre" HorizontalAlignment="Left" Height="21" Margin="33,29,0,0" VerticalAlignment="Top" Width="113" Padding="0,0,0,0" FontSize="14" FontFamily="Arial" Foreground="White" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding UserCharacerName}" Height="30" Margin="33,55,33,415" Background="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <Label Content="Pregunta 1" HorizontalAlignment="Left" Height="21" Margin="33,96,0,0" VerticalAlignment="Top" Width="113" Padding="0,0,0,0" FontSize="14" FontFamily="Arial" Foreground="White" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding FirstQuestion}" Height="30" Margin="33,122,79,348" Background="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Width="230"/>
+            <ToggleButton Height="30" Margin="270,122,33,348"/>
+            <Label Content="Pregunta 2" HorizontalAlignment="Left" Height="21" Margin="33,164,0,0" VerticalAlignment="Top" Width="113" Padding="0,0,0,0" FontSize="14" FontFamily="Arial" Foreground="White" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding SecondQuestion}" Height="30" Margin="33,193,81,277" Background="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <ToggleButton Height="30" Margin="270,193,33,277"/>
+            <Label Content="Pregunta 3" HorizontalAlignment="Left" Height="21" Margin="33,237,0,0" VerticalAlignment="Top" Width="113" Padding="0,0,0,0" FontSize="14" FontFamily="Arial" Foreground="White" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding ThirdQuestion}" Height="30" Margin="33,263,81,207" Background="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <ToggleButton Height="30" Margin="270,263,33,207"/>
+            <Label Content="Pregunta 4" HorizontalAlignment="Left" Height="21" Margin="33,305,0,0" VerticalAlignment="Top" Width="113" Padding="0,0,0,0" FontSize="14" FontFamily="Arial" Foreground="White" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding FourthQuestion}" Height="30" Margin="33,331,81,139" Background="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <ToggleButton Height="30" Margin="270,331,33,139"/>
+            <Label Content="Pregunta 5" HorizontalAlignment="Left" Height="21" Margin="33,373,0,0" VerticalAlignment="Top" Width="113" Padding="0,0,0,0" FontSize="14" FontFamily="Arial" Foreground="White" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding FifthQuestion}" Height="30" Margin="33,399,81,71" Background="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0"/>
+            <Button Command="{Binding SaveCharacterCommand}" Content="Guardar" Style="{StaticResource NoHoverButton}" HorizontalAlignment="Center" Margin="0,445,0,0" VerticalAlignment="Top" Background="#FF3DC74C" Height="30" Width="279" Foreground="White" FontWeight="Bold"/>
+            <ToggleButton Height="30" Margin="270,399,33,71"/>
+        </Grid>
+        <Button Command="{Binding QuitCommand}" Content="x" Style="{StaticResource NoHoverButton}" HorizontalAlignment="Left" Margin="306,16,0,0" VerticalAlignment="Top" Background="#FFDE2A2A" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="19" VerticalContentAlignment="Center" Width="17" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

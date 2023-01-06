@@ -25,7 +25,7 @@ namespace TontonatorGameUI.Core
         private double _average;
 
         // This var is used to show the current number of question. Does nothing else.
-        private int currentIndex = 1;
+        private int currentIndex = 0;
 
         // This var is used to disable or enable the connection with the database
         // to avoid excesive calls to the database.
@@ -179,10 +179,10 @@ namespace TontonatorGameUI.Core
                 // We make a call to calculate all the possible characters.
                 CalculatePossibleCharacters();
 
-                // We check if there are any possible characters. If don't we consider this
-                // as the end of the execution. We show the user the menu to create a new character.
-                // Here stops this execution if no errors found.
-                if (possibleCharacters.Count == 0) States.CreateNewCharacterMenu(QuestionsRequired);
+				// We check if there are any possible characters. If don't we consider this
+				// as the end of the execution. We show the user the menu to create a new character.
+				// Here stops this execution if no errors found.
+				if (possibleCharacters.Count == 0) viewModel.CallNewCharacter();
 
                 // We check if theres a character that matches the questions.
                 CheckCharacter();
@@ -231,12 +231,12 @@ namespace TontonatorGameUI.Core
             // We check if the program is not disposed.
             if (IsActive)
             {
-                // If there are any question's character then we show those first.
-                if (charactersInheritedQuestions.Count > 0) viewModel.SetQuestion(charactersInheritedQuestions[0], currentIndex);
-                // If there are questions reamining then we ask it.
-                else if (questions.Count > 0) viewModel.SetQuestion(questions[0], currentIndex);
-                // If there's nothing left then that means no character matched. We asked the user for it.
-                else if (questions.Count == 0) States.CreateNewCharacterMenu(QuestionsRequired);
+				// If there are any question's character then we show those first.
+				if (charactersInheritedQuestions.Count > 0) viewModel.SetQuestion(charactersInheritedQuestions[0], currentIndex);
+				// If there are questions reamining then we ask it.
+				else if (questions.Count > 0) viewModel.SetQuestion(questions[0], currentIndex);
+				// If there's nothing left then that means no character matched. We asked the user for it.
+				else if (questions.Count == 0) viewModel.CallNewCharacter(); 
                 //else if (questions.Count == 0) FillQuestions();
             }
         }
@@ -306,11 +306,10 @@ namespace TontonatorGameUI.Core
             if (hits == currentCharacter.Questions.Count)
             {
                 // If so we asked if it is the current character.
-                States.ShowCharacter(currentCharacter);
+                viewModel.SetCharacter(currentCharacter);
             }
             else
             {
-
 
             }
         }
@@ -397,8 +396,6 @@ namespace TontonatorGameUI.Core
                         }
                     }
                 }
-
-
 
                 alreadySet = false;
             }
